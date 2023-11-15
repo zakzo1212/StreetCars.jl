@@ -8,6 +8,7 @@ HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 
 [compat]
+HashCode2014 = "0.1"
 julia = "1.9"
 
 [extras]
