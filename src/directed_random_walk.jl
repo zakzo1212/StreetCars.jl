@@ -4,7 +4,7 @@ using HashCode2014: City, Solution, is_street_start, get_street_end
     directed_random_walk(rng, city)
     directed_random_walk(city)
 
-Create a solution from a [`City`](@ref) by letting each car follow a random walk from its starting point. 
+Create a solution from a City by letting each car follow a random walk from its starting point. 
 Bias is given to streets that have not been seen yet.
 """
 function directed_random_walk(rng::AbstractRNG, city::City)
