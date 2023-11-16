@@ -1,5 +1,5 @@
 using Random: AbstractRNG
-using HashCode2014: City, Solution, is_street_start, get_street_end, default_rng
+using HashCode2014: City, Solution, is_street_start, get_street_end
 """
     directed_random_walk(rng, city)
     directed_random_walk(city)
