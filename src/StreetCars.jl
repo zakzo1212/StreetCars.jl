@@ -7,6 +7,12 @@ module StreetCars
 
 using Artifacts: @artifact_str
 using Random: AbstractRNG
+using Documenter
+using LibGit2_jll
+using JuliaFormatter
+using Aqua
+using PythonCall
+using JET
 
 export directed_random_walk
 export upper_bound
