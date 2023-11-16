@@ -6,6 +6,8 @@ version = "1.0.0-DEV"
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
+LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
+LibGit2_jll = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
