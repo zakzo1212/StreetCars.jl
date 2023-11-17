@@ -61,6 +61,16 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         #@test city_shorter.total_duration == 18000
     end
 
+    @testset "RouteGrid" begin
+        city = read_city()
+        rg = RouteGrid(city)
+        solution = directed_random_walk(rg)
+        @test rg.city.total_duration == 54000
+        @test is_feasible(solution, rg.city)
+        #city_shorter = change_duration(city, 18000)
+        #@test city_shorter.total_duration == 18000
+    end
+
     # @testset "Plotting" begin
     #     city = read_city()
     #     solution = random_walk(city)
