@@ -1,5 +1,8 @@
 using StreetCars
 using Documenter
+
+using Pkg
+Pkg.add("HashCode2014")
 using HashCode2014: Junction, Street
 include("RouteGrid.jl")
 
