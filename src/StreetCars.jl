@@ -19,5 +19,6 @@ export upper_bound
 
 include("directed_random_walk.jl")
 include("UpperBound.jl")
+include("RouteGrid.jl")
 
 end
