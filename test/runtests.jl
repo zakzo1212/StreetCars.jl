@@ -54,7 +54,7 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
     @testset "Large instance" begin
         city = read_city()
         rng = MersenneTwister(0);
-        solution = random_walk(rng, city)
+        solution = directed_random_walk(rng, city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
         city_shorter = change_duration(city, 18000)

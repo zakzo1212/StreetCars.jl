@@ -14,26 +14,29 @@ city = read_city()
 city.junctions[1]
 city.streets[1]
 
-city = make_routegrid(city)
+rg = RouteGrid(city)
 
 # Find Upper Bound on Solutions
-print("City duration: ", city.total_duration)
-print("Upper bound: ", upper_bound(city))
+println("City duration: ", rg.city.total_duration)
+println("Upper bound: ", upper_bound(rg))
 
-five_hour_city = change_duration(city, 1800)
-print("City duration: ", five_hour_city.total_duration)
-print("Upper bound: ", upper_bound(five_hour_city))
+five_hour_rg= change_duration(rg, 1800)
+println("City duration: ", five_hour_rg.city.total_duration)
+println("Upper bound: ", upper_bound(five_hour_rg))
 
-solution = directed_random_walk(city)
+solution = directed_random_walk(rg)
 
 # sol_benchmark = @benchmark random_walk(rng, city)
 # sol_benchmark
 
-is_feasible(solution, city; verbose=true)
-total_distance(solution, city)
+feas = is_feasible(solution, rg.city; verbose=true)
+dist = total_distance(solution, rg.city)
+
+println("Feasible: ", feas)
+println("Distance: ", dist)
 
 # write_solution(solution, joinpath(tempdir(), "solution.txt"))
-city_map = plot_streets(city, solution; path="city_map.html")
+city_map = plot_streets(rg.city, solution; path="city_map.html")
 
 #####################################
 # The code below uses the base template code to find a solution

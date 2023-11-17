@@ -1,15 +1,10 @@
 using StreetCars
 using Documenter
 
-using Pkg
-Pkg.add("HashCode2014")
-using HashCode2014: Junction, Street
-include("RouteGrid.jl")
-
 DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=true)
 
 makedocs(;
-    modules=[StreetCars, Junction, Street, RouteGrid],
+    modules=[StreetCars],
     authors="Zachary Zhang <zakzo1212@gmail.com> and contributors",
     repo="https://github.com/zakzo1212/StreetCars.jl/blob/{commit}{path}#{line}",
     sitename="StreetCars.jl",

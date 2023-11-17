@@ -12,7 +12,8 @@ The method involves sorting the city's streets by their distance to duration rat
 that have the greatest ratio until the total duration of the city is reached. Note that since we have 8 cars, we can 
 consider the total duration to be 8 times the duration of the city.
 """
-function upper_bound(city::RouteGrid)
+function upper_bound(rg::RouteGrid)
+    city=rg.city
 
     time_limit = city.total_duration * 8
     streets = city.streets
