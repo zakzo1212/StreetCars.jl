@@ -31,8 +31,8 @@ function Base.show(io::IO, city::RouteGrid)
     )
 end
 
-function make_routegrid(city::City)
-    rg = RouteGrid(;
+function RouteGrid(city::City)
+    city = RouteGrid(;
         total_duration=city.total_duration,
         nb_cars=city.nb_cars,
         starting_junction=city.starting_junction,
@@ -40,7 +40,7 @@ function make_routegrid(city::City)
         streets=city.streets,
         seen_streets=Set{Int}()
     )
-    return rg
+    return city
 end
 
 function Base.string(city::RouteGrid)

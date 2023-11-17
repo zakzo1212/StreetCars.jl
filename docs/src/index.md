@@ -10,5 +10,5 @@ Documentation for [StreetCars](https://github.com/zakzo1212/StreetCars.jl).
 ```
 
 ```@autodocs
-Modules = [StreetCars]
+Modules = [StreetCars, Junction, Street]
 ```
