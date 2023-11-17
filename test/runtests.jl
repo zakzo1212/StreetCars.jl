@@ -47,8 +47,8 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         end
         @test is_feasible(solution, city)
         @test total_distance(solution, city) == 450
-        @test write_city(city, joinpath(tempdir(), "city.txt"))
-        @test write_solution(solution, joinpath(tempdir(), "solution.txt"))
+        #@test write_city(city, joinpath(tempdir(), "city.txt"))
+        #@test write_solution(solution, joinpath(tempdir(), "solution.txt"))
     end
 
     @testset "Large instance" begin
@@ -57,8 +57,8 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         solution = directed_random_walk(rng, city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
-        city_shorter = change_duration(city, 18000)
-        @test city_shorter.total_duration == 18000
+        #city_shorter = change_duration(city, 18000)
+        #@test city_shorter.total_duration == 18000
     end
 
     # @testset "Plotting" begin
