@@ -4,12 +4,14 @@ using PythonCall
 
 #####################################
 # Using our own improvements (directed_random_walk)
-include("directed_random_walk.jl")
+#include("directed_random_walk.jl")
 include("UpperBound.jl")
+include("RouteGrid.jl")
 
 rng = MersenneTwister(0);
 
-city = read_city()
+city_string = read_city()
+city = RouteGrid(city_string)
 city.junctions[1]
 city.streets[1]
 
@@ -17,11 +19,11 @@ city.streets[1]
 print("City duration: ", city.total_duration)
 print("Upper bound: ", upper_bound(city))
 
-five_hour_city = change_duration(city, 18000)
+five_hour_city = change_duration(city, 1800)
 print("City duration: ", five_hour_city.total_duration)
 print("Upper bound: ", upper_bound(five_hour_city))
 
-solution = directed_random_walk(rng, city)
+solution = directed_random_walk(city)
 
 # sol_benchmark = @benchmark random_walk(rng, city)
 # sol_benchmark
