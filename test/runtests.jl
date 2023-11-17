@@ -13,6 +13,7 @@ using JET
 using JuliaFormatter
 using PythonCall
 using Test
+using Random: MersenneTwister
 
 DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=true)
 
@@ -52,7 +53,8 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
 
     @testset "Large instance" begin
         city = read_city()
-        solution = random_walk(city)
+        rng = MersenneTwister(0);
+        solution = random_walk(rng, city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
         city_shorter = change_duration(city, 18000)

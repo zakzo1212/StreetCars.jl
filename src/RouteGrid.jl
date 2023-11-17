@@ -1,5 +1,5 @@
 using Random
-using HashCode2014: City, Solution, is_street_start, get_street_end
+using HashCode2014: City, Solution, is_street_start, get_street_end, Junction, Street
 
 """
 RouteGrid
