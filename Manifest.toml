@@ -124,16 +124,10 @@ uuid = "c27321d9-0574-5035-807b-f59d2c89b15c"
 version = "1.3.1"
 
 [[deps.HashCode2014]]
-deps = ["Artifacts", "Random"]
-git-tree-sha1 = "102d549ef3149a1c85602634bfc8ccf39db16378"
-repo-rev = "main"
-repo-url = "https://github.com/gdalle/HashCode2014.jl"
+deps = ["Artifacts", "PythonCall"]
+git-tree-sha1 = "32e30b11d479dcbc4b52471804621dacd4cc6016"
 uuid = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
-version = "0.1.1"
-weakdeps = ["PythonCall"]
-
-    [deps.HashCode2014.extensions]
-    HashCode2014PythonCallExt = "PythonCall"
+version = "0.1.0"
 
 [[deps.IOCapture]]
 deps = ["Logging", "Random"]

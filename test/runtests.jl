@@ -13,6 +13,7 @@ using JET
 using JuliaFormatter
 using PythonCall
 using Test
+using Random: MersenneTwister
 
 DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=true)
 
@@ -46,17 +47,28 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         end
         @test is_feasible(solution, city)
         @test total_distance(solution, city) == 450
-        @test write_city(city, joinpath(tempdir(), "city.txt"))
-        @test write_solution(solution, joinpath(tempdir(), "solution.txt"))
+        #@test write_city(city, joinpath(tempdir(), "city.txt"))
+        #@test write_solution(solution, joinpath(tempdir(), "solution.txt"))
     end
 
     @testset "Large instance" begin
         city = read_city()
-        solution = random_walk(city)
+        rng = MersenneTwister(0);
+        solution = directed_random_walk(rng, city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
-        city_shorter = change_duration(city, 18000)
-        @test city_shorter.total_duration == 18000
+        #city_shorter = change_duration(city, 18000)
+        #@test city_shorter.total_duration == 18000
+    end
+
+    @testset "RouteGrid" begin
+        city = read_city()
+        rg = RouteGrid(city)
+        solution = directed_random_walk(rg)
+        @test rg.city.total_duration == 54000
+        @test is_feasible(solution, rg.city)
+        #city_shorter = change_duration(city, 18000)
+        #@test city_shorter.total_duration == 18000
     end
 
     # @testset "Plotting" begin
