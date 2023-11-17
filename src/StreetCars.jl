@@ -16,6 +16,7 @@ using JET
 
 export directed_random_walk
 export upper_bound
+export RouteGrid
 
 include("directed_random_walk.jl")
 include("UpperBound.jl")
