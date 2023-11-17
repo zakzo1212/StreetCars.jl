@@ -20,7 +20,7 @@ rg = RouteGrid(city)
 println("City duration: ", rg.city.total_duration)
 println("Upper bound: ", upper_bound(rg))
 
-five_hour_rg= change_duration(rg, 1800)
+five_hour_rg= change_duration(rg, 18000)
 println("City duration: ", five_hour_rg.city.total_duration)
 println("Upper bound: ", upper_bound(five_hour_rg))
 
