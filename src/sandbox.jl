@@ -10,9 +10,11 @@ include("RouteGrid.jl")
 
 rng = MersenneTwister(0);
 
-city = read_route_grid()
+city = read_city()
 city.junctions[1]
 city.streets[1]
+
+city = make_routegrid(city)
 
 # Find Upper Bound on Solutions
 print("City duration: ", city.total_duration)
