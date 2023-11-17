@@ -1,5 +1,6 @@
 using Random
-using HashCode2014: City, Solution, is_street_start, get_street_end, Junction, Street
+using HashCode2014: City, Solution, is_street_start, get_street_end, Junction, Street, get_city_string
+using Artifacts: @artifact_str
 
 """
 RouteGrid
@@ -72,6 +73,36 @@ function Base.string(city::RouteGrid)
         s *= string(street) * "\n"
     end
     return chop(s; tail=1)
+end
+
+"""
+    read_route_grid(path)
+
+Read and parse a [`City`](@ref) from a file located at `path`.
+
+The default path is an artifact containing the official challenge data from <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt>.
+"""
+function read_route_grid(
+    path=get_city_string()
+)   
+    println(path)
+    city_string = open(path, "r") do file
+        read(file, String)
+    end
+    return City(city_string)
+end
+
+"""
+    write_route_grid(city, path)
+
+Write a [`City`](@ref) to a file located at `path`.
+"""
+function write_route_grid(city::RouteGrid, path)
+    city_string = string(city)
+    open(path, "w") do file
+        write(file, city_string)
+    end
+    return true
 end
 
 

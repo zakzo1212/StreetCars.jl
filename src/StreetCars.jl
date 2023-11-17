@@ -13,6 +13,7 @@ using JuliaFormatter
 using Aqua
 using PythonCall
 using JET
+using HashCode2014
 
 export directed_random_walk
 export upper_bound

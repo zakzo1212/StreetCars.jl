@@ -10,8 +10,7 @@ include("RouteGrid.jl")
 
 rng = MersenneTwister(0);
 
-city_string = read_city()
-city = RouteGrid(city_string)
+city = read_route_grid()
 city.junctions[1]
 city.streets[1]
 
