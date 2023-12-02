@@ -138,7 +138,7 @@ end
 Create a solution from a City by letting each car follow a random walk from its starting point.
 """
 function directed_random_walk(rg::RouteGrid)
-    print("Starting directed random walk")
+    println("Starting directed random walk")
     rng = MersenneTwister(0)
     search_function = (candidates) -> rand(rng, candidates)
     generic_walk(rg, search_function)
