@@ -1,6 +1,7 @@
 using HashCode2014
 using Random: MersenneTwister
 using PythonCall
+using Revise
 
 #####################################
 # Using our own improvements (directed_random_walk)
