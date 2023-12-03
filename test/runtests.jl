@@ -70,6 +70,36 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         #city_shorter = change_duration(city, 18000)
         #@test city_shorter.total_duration == 18000
     end
+    
+    @testset "add_street_to_seen" begin
+        city = read_city()
+        rg = RouteGrid(city)
+        StreetCars.add_street_to_seen(rg, 4440)
+        StreetCars.add_street_to_seen(rg, 5755)
+        @test rg.seen_streets == Set{Int64}([4440, 5755])
+    end
+
+    @testset "get_seen_and_unseen_canditates" begin
+        city = read_city()
+        rg = RouteGrid(city)
+        current_junction = 1
+        duration = 0
+        candidates, unseen_candidates = StreetCars.get_seen_and_unseen_canditates(rg, current_junction, duration)
+
+        expected_candidates = Tuple{Int64, Street}[(4440, Street(1, 4943, false, 25, 277)), (5755, Street(1, 1080, true, 13, 113)), (13613, Street(2913, 1, true, 23, 178))]
+        expected_unseen_candidates = Tuple{Int64, Street}[(4440, Street(1, 4943, false, 25, 277)), (5755, Street(1, 1080, true, 13, 113)), (13613, Street(2913, 1, true, 23, 178))]
+        @test candidates == expected_candidates
+        @test unseen_candidates == expected_unseen_candidates
+
+        StreetCars.add_street_to_seen(rg, 4440)
+        StreetCars.add_street_to_seen(rg, 5755)
+        candidates, unseen_candidates = StreetCars.get_seen_and_unseen_canditates(rg, current_junction, duration)
+        expected_candidates = Tuple{Int64, Street}[(4440, Street(1, 4943, false, 25, 277)), (5755, Street(1, 1080, true, 13, 113)), (13613, Street(2913, 1, true, 23, 178))]
+        expected_unseen_candidates = Tuple{Int64, Street}[(13613, Street(2913, 1, true, 23, 178))]
+        @test candidates == expected_candidates
+        @test unseen_candidates == expected_unseen_candidates
+
+    end
 
     # @testset "Plotting" begin
     #     city = read_city()
