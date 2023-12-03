@@ -6,6 +6,7 @@ version = "1.0.0-DEV"
 [deps]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
