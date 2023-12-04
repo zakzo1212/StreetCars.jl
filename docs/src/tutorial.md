@@ -28,33 +28,45 @@ julia> city.streets[1]
 Monodirectional street between junctions 8400 and 8402, with duration 4 seconds and distance 36 meters
 ```
 
-A problem solution is encoded in an object of type [`Solution`](@ref).
-You can generate a random one like this:
+You can then create a RouteGrid object from the City object, which will be used to generate a solution.
 
 ```jldoctest tuto
-julia> using Random: MersenneTwister
+julia> route_grid = RouteGrid(city)
+```
 
-julia> rng = MersenneTwister(0);
+You can access attributes of the City within RouteGrid as well as find the upper bound on the distance of a solution within the RouteGrid's allowed duration.
 
-julia> solution = random_walk(rng, city)
-Solution with 8 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366, 3707]
+```jldoctest tuto
+julia> rg.city.total_duration
+julia> upper_bound(rg)
+```
+
+A problem solution is encoded in an object of type [`Solution`](@ref).
+You can generate a solution using a directed random walk like this:
+
+```jldoctest tuto
+julia> solution = directed_random_walk(rg)
 ```
 
 Then, you can check its feasibility and objective value:
 
 ```jldoctest tuto
-julia> is_feasible(solution, city; verbose=true)
-true
-
-julia> total_distance(solution, city)
-752407
+feas = is_feasible(solution, rg.city; verbose=true)
+dist = total_distance(solution, rg.city)
 ```
 
-Finally, you can export it to a text file:
+You can export it to a text file and visualize the solution:
 
 ```jldoctest tuto
 julia> write_solution(solution, joinpath(tempdir(), "solution.txt"))
 true
+```
+
+You can also change the duration of the RouteGrid object and generate a new solution.
+
+```jldoctest tuto
+julia> change_duration(rg, 18000)
+julia> solution = directed_random_walk(rg)
 ```
 
 ## Visualization
@@ -65,11 +77,5 @@ If you are working outside of a notebook, just open the resulting file `"city_ma
 
 ```julia
 using PythonCall
-city_map = plot_streets(city, solution; path="city_map.html")
+julia> city_map = plot_streets(rg.city, solution; path="city_map.html")
 ```
-
-## Performance
-
-This package was designed for pedagogical purposes.
-It defines types and functions that may be suboptimal in terms of performance.
-The goal is to invite students to reimplement their own, while providing them with a reliable starting point.
