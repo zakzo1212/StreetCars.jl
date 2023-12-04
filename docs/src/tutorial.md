@@ -19,13 +19,10 @@ You can create one for the setting of the challenge (the streets of Paris) as fo
 julia> using HashCode2014
 
 julia> city = read_city()
-City with 11348 junctions and 17958 streets, where 8 cars must start from junction 4517 and travel for at most 54000 seconds
 
 julia> city.junctions[1]
-Junction located at coordinates (48.8351503, 2.3077904)
 
 julia> city.streets[1]
-Monodirectional street between junctions 8400 and 8402, with duration 4 seconds and distance 36 meters
 ```
 
 You can then create a RouteGrid object from the City object, which will be used to generate a solution.
