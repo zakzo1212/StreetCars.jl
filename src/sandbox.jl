@@ -4,60 +4,67 @@ using PythonCall
 using Revise
 using BenchmarkTools
 
-#####################################
-# Using our own improvements (directed_random_walk)
-#include("directed_random_walk.jl")
 include("UpperBound.jl")
 include("RouteGrid.jl")
 
 rng = MersenneTwister(0);
 
+###################
+# 15 HOUR EXAMPLE #
+###################
 city = read_city()
 city.junctions[1]
 city.streets[1]
-
 rg = RouteGrid(city)
 
 # Find Upper Bound on Solutions
 println("City duration: ", rg.city.total_duration)
 println("Upper bound: ", upper_bound(rg))
 
-# five_hour_rg= change_duration(rg, 18000)
-# println("City duration: ", five_hour_rg.city.total_duration)
-# println("Upper bound: ", upper_bound(five_hour_rg))
-
+# perform directed random walk to find solution
 solution = directed_random_walk(rg)
-# solution = directed_random_walk(five_hour_rg)
 
-# sol_benchmark = @benchmark directed_random_walk(rg)
-# elapsed = @elapsed directed_random_walk(rg)
-# five_hour_elapsed = @elapsed directed_random_walk(five_hour_rg)
-
+# check feasibility and distance of solution
 feas = is_feasible(solution, rg.city; verbose=true)
 dist = total_distance(solution, rg.city)
-
 println("Feasible: ", feas)
 println("Distance: ", dist)
 
-# write_solution(solution, joinpath(tempdir(), "solution.txt"))
+# visualize solution
 city_map = plot_streets(rg.city, solution; path="city_map.html")
 
-#####################################
-# The code below uses the base template code to find a solution
-#####################################
+###################
+# 5 HOUR EXAMPLE  #
+###################
 
-# rng = MersenneTwister(0);
+city = read_city()
+city.junctions[1]
+city.streets[1]
+rg = RouteGrid(city)
+five_hour_rg= change_duration(rg, 18000)
 
-# city = read_city()
-# city.junctions[1]
-# city.streets[1]
+# Find Upper Bound on Solutions
+println("City duration: ", five_hour_rg.city.total_duration)
+println("Upper bound: ", upper_bound(five_hour_rg))
 
-# solution = random_walk(rng, city)
-# # sol_benchmark = @benchmark random_walk(rng, city)
-# # sol_benchmark
+# perform directed random walk to find solution
+five_hour_solution = directed_random_walk(five_hour_rg)
 
-# is_feasible(solution, city; verbose=true)
-# total_distance(solution, city)
+# check feasibility and distance of solution
+feas = is_feasible(five_hour_solution, five_hour_rg.city; verbose=true)
+dist = total_distance(five_hour_solution, five_hour_rg.city)
+println("Feasible: ", feas)
+println("Distance: ", dist)
 
-# # write_solution(solution, joinpath(tempdir(), "solution.txt"))
-# city_map = plot_streets(city, solution; path="city_map.html")
+# visualize solution
+city_map = plot_streets(five_hour_rg.city, five_hour_solution; path="city_map.html")
+
+################
+# Benchmarking #
+################
+
+# you can benchmark the directed random walk function using the following code
+sol_benchmark = @benchmark directed_random_walk(rg)
+elapsed = @elapsed directed_random_walk(rg)
+five_hour_sol_benchmark = @benchmark directed_random_walk(five_hour_rg)
+five_hour_elapsed = @elapsed directed_random_walk(five_hour_rg)
