@@ -3,12 +3,13 @@ using HashCode2014: City, Solution, is_street_start, get_street_end
 using Artifacts: @artifact_str
 
 """
-RouteGrid
+    RouteGrid
 
-Store a city along with additional instance parameters.
+A custom type that stores both a HashCode2014 City along with a set of streets that have been seen by street cars that are 
+exploring that City.
 
 # Fields
-- city::City: the city
+- city::City: the HashCode2014 City instance that represents the current problem
 - seen_streets::Set{Int}: the set of streets that have been seen
 """
 @kwdef struct RouteGrid
