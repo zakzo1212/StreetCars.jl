@@ -100,7 +100,18 @@ end
 """
     generic_walk(rg, search_function)
 
-Create a solution from a City by letting each car follow a walk from its starting point given a search function.
+Create a solution from a RouteGrid by letting each car follow a walk from its starting point given a search function. The search
+function should take in an array of candidates and return a tuple of the index of the chosen candidate and the candidate itself.
+
+The walk algorithm works as follows:
+1. Initialize the itinerary of each car to be a list containing only the starting junction.
+2. While there are still streets that can be explored for a current car:
+    a. Get the current junction of the car.
+    b. Get the candidates and unseen candidates for the next street to take.
+    c. If there are no unseen candidates, then use the seen candidates. If there are no seen candidates, then break out of the loop.
+    d. Use the search function to choose the next street to take.
+    e. Add the chosen street to the itinerary of the car.
+    f. Add the chosen street to the set of seen streets.
 """
 function generic_walk(rg::RouteGrid, search_function)
     (; total_duration, nb_cars, starting_junction, streets) = rg.city
@@ -140,7 +151,8 @@ end
 """
     random_walk(rg)
 
-Create a solution from a City by letting each car follow a random walk from its starting point.
+Create a solution from a RouteGrid by letting each car follow a random walk from its starting point. 
+Calls [`generic_walk`](@ref) with a search function that chooses a random candidate.
 """
 function directed_random_walk(rg::RouteGrid)
     println("Starting directed random walk")
