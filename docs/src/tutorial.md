@@ -56,7 +56,6 @@ You can export it to a text file and visualize the solution:
 
 ```jldoctest tuto
 julia> write_solution(solution, joinpath(tempdir(), "solution.txt"))
-true
 ```
 
 You can also change the duration of the RouteGrid object and generate a new solution.
