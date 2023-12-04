@@ -20,5 +20,5 @@ functions and data structures. Guillaume's package is available at https://gdall
 ````
 
 ```@autodocs
-Modules = [StreetCars]
+Modules = [StreetCars, HashCode2014]
 ```
