@@ -1,10 +1,3 @@
-# using StreetCars
-# using Test
-
-# @testset "StreetCars.jl" begin
-#     # Write your tests here.
-# end
-
 using Aqua
 using Documenter
 using HashCode2014
@@ -18,17 +11,6 @@ using Random: MersenneTwister
 DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=true)
 
 @testset verbose = true "StreetCars.jl" begin
-    # @testset "Code quality (Aqua.jl)" begin
-    #     Aqua.test_all(StreetCars; ambiguities=false)
-    # end
-
-    # @testset "Code formatting (JuliaFormatter.jl)" begin
-    #     @test format(StreetCars; verbose=false, overwrite=false)
-    # end
-
-    # @testset "Code linting (JET.jl)" begin
-    #     JET.test_package(StreetCars; target_defined_modules=true)
-    # end
 
     @testset "Doctests (Documenter.jl)" begin
         doctest(StreetCars)
@@ -47,8 +29,6 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         end
         @test is_feasible(solution, city)
         @test total_distance(solution, city) == 450
-        #@test write_city(city, joinpath(tempdir(), "city.txt"))
-        #@test write_solution(solution, joinpath(tempdir(), "solution.txt"))
     end
 
     @testset "Large instance" begin
@@ -57,8 +37,6 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         solution = directed_random_walk(rng, city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
-        #city_shorter = change_duration(city, 18000)
-        #@test city_shorter.total_duration == 18000
     end
 
     @testset "RouteGrid" begin
@@ -67,8 +45,6 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
         solution = directed_random_walk(rg)
         @test rg.city.total_duration == 54000
         @test is_feasible(solution, rg.city)
-        #city_shorter = change_duration(city, 18000)
-        #@test city_shorter.total_duration == 18000
     end
     
     @testset "add_street_to_seen" begin
@@ -101,9 +77,4 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
 
     end
 
-    # @testset "Plotting" begin
-    #     city = read_city()
-    #     solution = random_walk(city)
-    #     plot_streets(city, solution; path=joinpath(tempdir(), "solution.html"))
-    # end
 end
