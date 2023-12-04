@@ -5,7 +5,7 @@ using Artifacts: @artifact_str
 """
     RouteGrid
 
-A custom type that stores both a HashCode2014 City along with a set of streets that have been seen by street cars that are 
+A immutable custom type that stores both a HashCode2014 City along with a set of streets that have been seen by street cars that are 
 exploring that City.
 
 # Fields
@@ -45,10 +45,11 @@ function Base.string(rg::RouteGrid)
     end
     return chop(s; tail=1)
 end
+
 """
     change_duration(rg, total_duration)
 
-Create a new [`RouteGrid`](@ref) with a different `total_duration` and everything else equal.
+Create and returns a new [`RouteGrid`](@ref) with the specified `total_duration`. All other fields should be the same as the given RouteGrid `rg`.
 """
 function change_duration(rg::RouteGrid, total_duration)
     new_city = City(;
@@ -68,7 +69,7 @@ end
 """ 
     add_street_to_seen(rg, street)
 
-Add a street to the set of seen streets in a city.
+Add the given street to the set of seen streets in the given RouteGrid.
 """
 function add_street_to_seen(rg::RouteGrid, street::Int)
     push!(rg.seen_streets, street)
@@ -78,7 +79,10 @@ end
 """
     get_seen_and_unseen_canditates(rg, current_junction, duration)
 
-Get the seen and unseen candidates for the next street to take in a city.
+Given a RouteGrid `rg`, a current junction `current_junction`, and a duration `duration`, 
+return a tuple of two arrays of tuples. The first array contains all the candidates for the next street to take in a city. 
+A candidate is any street that starts at the current junction and whose duration does not exceed the total duration of the city. 
+The second returned array contains all of the candidates streets that have not been seen in `rg`.
 """
 function get_seen_and_unseen_canditates(rg::RouteGrid, current_junction::Int, duration::Int)
     candidates = [
