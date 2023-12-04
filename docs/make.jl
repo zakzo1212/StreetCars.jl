@@ -5,7 +5,7 @@ DocMeta.setdocmeta!(StreetCars, :DocTestSetup, :(using StreetCars); recursive=tr
 
 makedocs(;
     modules=[StreetCars],
-    authors="Zachary Zhang <zakzo1212@gmail.com> and contributors",
+    authors="Zachary Zhang <zakzhang@mit.edum> and Andrew Jenkins <awj@mit.edu>",
     repo="https://github.com/zakzo1212/StreetCars.jl/blob/{commit}{path}#{line}",
     sitename="StreetCars.jl",
     format=Documenter.HTML(;
@@ -15,7 +15,7 @@ makedocs(;
         assets=String[],
     ),
     pages=[
-        "Home" => "index.md",
+        "Home" => ["Tutorial" => "tutorial.md", "API reference" => "api.md"],
     ],
 )
 
