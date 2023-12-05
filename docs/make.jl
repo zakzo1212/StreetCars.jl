@@ -19,7 +19,7 @@ makedocs(;
         "Home" => "index.md", 
         "Tutorial" => "tutorial.md", 
         "API reference" => "api.md",
-        "Algorithims" => "algorithims.md",
+        "Algorithims" => "algorithms.md",
     ],
 )
 
