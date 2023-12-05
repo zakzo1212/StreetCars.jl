@@ -58,6 +58,7 @@ feas = is_feasible(solution, rg.city; verbose=true)
 dist = total_distance(solution, rg.city)
 ```
 
+
 You can export it to a text file and visualize the solution:
 
 ```julia
@@ -81,3 +82,10 @@ If you are working outside of a notebook, just open the resulting file `"city_ma
 using PythonCall
 city_map = plot_streets(rg.city, solution; path="city_map.html")
 ```
+
+## Feasibility of solutions
+Checking the feasability of solutions combines the use of the HashCode `is_feasible` function, along with our own time duration check within our directed random walk algorithm. For every car at each timestep, our directed random walk checks to make sure that we dont choose any streets whos time to traverse would exceed our total duration threshold. The `is_feasible` function checks to make sure the following constraints are met for the proposed solution:
+- the number of itineraries has to match the number of cars of `city`
+- the first junction of each itinerary has to be the starting junction of `city`
+- for each consecutive pair of junctions on an itinerary, a street connecting these junctions has to exist in `city` (if the street is one directional, it has to be traversed in the correct direction)
+- the duration of each itinerary has to be lower or equal to the total duration of `city`
